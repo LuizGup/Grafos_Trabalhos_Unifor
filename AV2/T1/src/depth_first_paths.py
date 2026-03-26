@@ -27,7 +27,7 @@
    0 to 5:  0-2-3-5
 
 """
-from src.Graph import Graph
+from src.graph import Graph
 
 
 class DepthFirstPaths:

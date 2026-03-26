@@ -39,7 +39,7 @@
 
 from collections import deque
 
-from src.Graph import Graph
+from src.graph import Graph
 
 
 class BreadthFirstPaths:

@@ -1,6 +1,6 @@
 """
    Execution:    python -m src.graph ../dataset/tinyG.txt
-   Dependencies: src.bag.Bag, sys
+   Dependencies: src.bag.bag, sys
    Data files:   ../dataset/tinyG.txt
                  ../dataset/mediumG.txt
                  ../dataset/largeG.txt
@@ -31,7 +31,7 @@
    2: 141 110 108 86 79 51 42 18 14 
    ...
  """
-from src.Bag import Bag
+from src.bag import Bag
 
 
 class Graph:
