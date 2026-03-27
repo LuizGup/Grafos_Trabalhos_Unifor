@@ -40,3 +40,7 @@ Este projeto implementa um grafo com os estados do Nordeste e executa DFS e BFS 
 ## Exemplo rapido
 
 Com origem AL e destino CE, o programa imprime todos os itens acima, incluindo os caminhos e as ordens de visita.
+
+
+## Video Explicativo
+https://youtu.be/k6Y6hmos3X4
