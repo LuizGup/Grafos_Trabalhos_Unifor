@@ -36,10 +36,12 @@ class DepthFirstPaths:
         self.marked = [False for _ in range(G.V)]
         self.edge_to = [0 for _ in range(G.V)]
         self.s = s
+        self.visit_order = []
         self.dfs(G, s)
 
     def dfs(self, G, v):
         self.marked[v] = True
+        self.visit_order.append(v)
         for w in G.adj[v]:
             if not self.marked[w]:
                 self.edge_to[w] = v
