@@ -25,3 +25,5 @@ Implementacao em Python do T2 da disciplina de Grafos.
 - Se o grafo possui ciclo
 - Complexidade de tempo e espaco do algoritmo de ciclo
 - Vertices de um ciclo encontrado (quando existir)
+
+  Link do video : https://drive.google.com/file/d/1mUScDIeV_OIaZNbQkzTMn8oAkrUrw8aV/view?usp=sharing
