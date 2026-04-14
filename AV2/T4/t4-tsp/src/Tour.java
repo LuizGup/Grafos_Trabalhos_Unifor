@@ -100,16 +100,68 @@ public class Tour {
 
     // inserts p using the nearest neighbor heuristic
     public void insertNearest(Point p) {
-        throw new UnsupportedOperationException(
-                "TODO: implementar insertNearest(Point p) usando a heuristica nearest insertion"
-        );
+        if (start.p == null) {
+            start.p = p;
+            start.next = start;
+            return;
+        }
+
+        if (start.next == null) {
+            start.next = start;
+        }
+
+        Node nearest = start;
+        Node current = start;
+        double minDistance = p.distanceTo(start.p);
+
+        do {
+            double distance = p.distanceTo(current.p);
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearest = current;
+            }
+            current = current.next;
+        } while (!current.equals(start));
+
+        Node newNode = new Node();
+        newNode.p = p;
+        newNode.next = nearest.next;
+        nearest.next = newNode;
     }
 
     // inserts p using the smallest increase heuristic
     public void insertSmallest(Point p) {
-        throw new UnsupportedOperationException(
-                "TODO: implementar insertSmallest(Point p) usando a heuristica smallest insertion"
-        );
+        if (start.p == null) {
+            start.p = p;
+            start.next = start;
+            return;
+        }
+
+        if (start.next == null) {
+            start.next = start;
+        }
+
+        Node best = start;
+        Node current = start;
+        double bestIncrease = p.distanceTo(start.p) + p.distanceTo(start.next.p)
+                - start.p.distanceTo(start.next.p);
+
+        do {
+            double increase = current.p.distanceTo(p)
+                    + p.distanceTo(current.next.p)
+                    - current.p.distanceTo(current.next.p);
+
+            if (increase < bestIncrease) {
+                bestIncrease = increase;
+                best = current;
+            }
+            current = current.next;
+        } while (!current.equals(start));
+
+        Node newNode = new Node();
+        newNode.p = p;
+        newNode.next = best.next;
+        best.next = newNode;
     }
 
     // tests this class by calling all constructors and instance methods

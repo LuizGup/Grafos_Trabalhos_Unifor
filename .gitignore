@@ -11,3 +11,13 @@ env/
 # Tool caches
 .pytest_cache/
 .mypy_cache/
+
+# Java build artifacts
+*.class
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+
+# folders
+/specs/
