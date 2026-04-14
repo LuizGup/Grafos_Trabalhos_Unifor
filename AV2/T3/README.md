@@ -31,4 +31,4 @@ O arquivo entrada_eulerizada.txt deve estar balanceado para que o circuito euler
 
 ## Video Explicativo
 
-Adicione aqui o link do video, se necessario.
+link vídeo -> https://youtu.be/zYqNQ8R_Nsc
