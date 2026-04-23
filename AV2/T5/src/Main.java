@@ -10,20 +10,35 @@ public class Main {
         Graph graph = new Graph(in);
         GraphColoringDSatur dsatur = new GraphColoringDSatur(graph);
 
-        StdOut.println("Grafo carregado:");
+        // 1. Exibir o grafo (lista de adjacencia)
+        StdOut.println("=== Grafo carregado ===");
         StdOut.println(graph);
+
+        // 2. Executar o algoritmo DSatur
+        dsatur.color();
+
+        // 3. Exibir a ordem de coloracao
+        StdOut.println("=== Ordem de coloracao ===");
+        int[] order = dsatur.getColoringOrder();
+        for (int i = 0; i < order.length; i++) {
+            StdOut.printf("  %2d. %s (vertice %2d)%n",
+                    i + 1, dsatur.getLabel(order[i]), order[i]);
+        }
         StdOut.println();
 
-        StdOut.println("TODO: implementar a execucao do DSatur.");
-        StdOut.println("TODO: exibir a ordem de coloracao.");
-        StdOut.println("TODO: exibir as cores finais de cada vertice.");
-        StdOut.println("TODO: exibir o total de cores utilizadas.");
-        StdOut.println("TODO: validar se a coloracao produzida eh valida.");
+        // 4. Exibir as cores finais de cada vertice
+        StdOut.println("=== Cores atribuidas ===");
+        for (int v = 0; v < graph.V(); v++) {
+            StdOut.printf("  %s (vertice %2d): cor %d%n",
+                    dsatur.getLabel(v), v, dsatur.getColor(v));
+        }
+        StdOut.println();
 
-        // Exemplo de chamadas esperadas apos a implementacao:
-        // dsatur.color();
-        // int[] order = dsatur.getColoringOrder();
-        // int totalColors = dsatur.getColorCount();
-        // boolean valid = dsatur.isValidColoring();
+        // 5. Exibir o total de cores utilizadas
+        StdOut.printf("Total de cores utilizadas: %d%n", dsatur.getColorCount());
+
+        // 6. Validar se a coloracao produzida eh valida
+        boolean valid = dsatur.isValidColoring();
+        StdOut.printf("Coloracao valida: %s%n", valid ? "SIM" : "NAO");
     }
 }
