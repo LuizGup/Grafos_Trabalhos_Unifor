@@ -5,3 +5,8 @@ __pycache__/
 
 # Stress test data
 dados/stress_test.txt
+cses/stress_test.txt
+
+# Temporary / planning markdowns
+checklist_nota10.md
+planejamento.md
