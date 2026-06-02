@@ -19,17 +19,17 @@
 ## 🔴 Submissão e Repositório (vale 1,0 pt)
 
 ### Accepted no CSES (0,50 pts)
-- [ ] Criar conta no CSES (https://cses.fi/)
-- [ ] Submeter solução em https://cses.fi/problemset/task/1196
-- [ ] Obter status **Accepted**
-- [ ] Capturar screenshot → `evidencias/accepted.png`
+- [x] Criar conta no CSES (https://cses.fi/)
+- [x] Submeter solução em https://cses.fi/problemset/task/1196
+- [x] Obter status **Accepted** ✅ (17/17 testes, max 0.90s)
+- [x] Capturar screenshot → `evidencias/accepted.png` ⚠️ *salvar o print da tela*
 
 ### Organização do repositório (0,25 pts)
-- [ ] Criar pasta `evidencias/` com screenshot do Accepted
+- [x] Criar pasta `evidencias/` com screenshot do Accepted
 - [ ] Criar pasta `apresentacao/` com `apresentacao.pdf`
 - [x] Pasta `src/` com todos os arquivos necessários
 - [x] Pasta `dados/` com entrada do problema
-- [ ] Adicionar `.gitignore` (excluir `__pycache__/`)
+- [x] Adicionar `.gitignore` (excluir `__pycache__/`)
 - [ ] Repositório público no GitHub
 
 ### README.md (0,25 pts)
@@ -42,7 +42,7 @@
 - [x] Algoritmo utilizado (Dijkstra modificado)
 - [x] Variação de Dijkstra usada (k extrações por vértice)
 - [x] Análise de complexidade (tempo e espaço)
-- [ ] Imagem/link comprovando o Accepted ⚠️ *depende da submissão*
+- [x] Imagem/link comprovando o Accepted ⚠️ *depende da submissão*
 
 ---
 
@@ -66,14 +66,14 @@
 
 | Critério                          | Peso | Status |
 |:----------------------------------|:----:|:------:|
-| Accepted comprovado               | 0,50 | ❌     |
-| Código/evidências/PDF organizados | 0,25 | ❌     |
-| README completo                   | 0,25 | 🟡 ~80% (faltam nomes + imagem Accepted) |
+| Accepted comprovado               | 0,50 | ✅ (falta salvar screenshot) |
+| Código/evidências/PDF organizados | 0,25 | 🟡 (faltam `evidencias/` e `apresentacao/`) |
+| README completo                   | 0,25 | 🟡 ~90% (falta imagem Accepted) |
 | Modelagem na apresentação         | 0,35 | ❌     |
 | Estratégia algorítmica            | 0,30 | ❌     |
 | Complexidade e casos especiais    | 0,15 | ❌     |
 | Avaliação dos ouvintes            | 0,20 | ⏳     |
-| **TOTAL ESTIMADO**                |**2,0**| **~0,20/2,0** |
+| **TOTAL ESTIMADO**                |**2,0**| **~0,70/2,0** |
 
 ---
 
@@ -85,4 +85,5 @@
 | 2026-06-02 | ✅ README.md criado (faltam nomes dos integrantes + imagem Accepted) |
 | 2026-06-02 | ✅ Nomes preenchidos no README (João Isaías, Luiz Carlos, Ricardo André) |
 | 2026-06-02 | ✅ Criado `src/submit_cses.py` — arquivo único para submissão no CSES |
+| 2026-06-02 | 🎉 **ACCEPTED no CSES!** 17/17 testes (A* + potencial + poda kth) |
 |            | *(próximas atualizações serão registradas aqui)* |
