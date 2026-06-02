@@ -35,7 +35,7 @@
 ### README.md (0,25 pts)
 - [x] Nome do problema
 - [x] Link do problema
-- [ ] Integrantes do grupo ⚠️ *preencher nomes no README.md*
+- [x] Integrantes do grupo
 - [x] Linguagem utilizada
 - [x] Como executar a solução
 - [x] Explicação da modelagem (vértices, arestas, pesos)
@@ -83,4 +83,6 @@
 |:-----------|:----------------|
 | 2026-06-02 | Análise inicial — código pronto, faltam entregas formais |
 | 2026-06-02 | ✅ README.md criado (faltam nomes dos integrantes + imagem Accepted) |
+| 2026-06-02 | ✅ Nomes preenchidos no README (João Isaías, Luiz Carlos, Ricardo André) |
+| 2026-06-02 | ✅ Criado `src/submit_cses.py` — arquivo único para submissão no CSES |
 |            | *(próximas atualizações serão registradas aqui)* |

@@ -11,10 +11,9 @@
 
 ### Integrantes
 
-<!-- ⚠️ PREENCHER COM OS NOMES DOS INTEGRANTES -->
-- Integrante 1 — <!-- nome -->
-- Integrante 2 — <!-- nome -->
-- Integrante 3 — <!-- nome -->
+- João Isaías — 2310283
+- Luiz Carlos — 2410410
+- Ricardo André — 2417200
 
 ---
 
