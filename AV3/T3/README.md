@@ -1,4 +1,5 @@
 # UVA 11045 – My T-shirt suits me
+https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=22&page=show_problem&problem=1986
 
 ## Descrição do Problema
 
