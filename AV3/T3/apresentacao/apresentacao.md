@@ -14,7 +14,7 @@
 ---
 ### 🎙️ Roteiro da Fala (Slide 1)
 * **Apresentador:** João Isaías
-* **Ação:** Exibir o primeiro slide e se apresentar.
+* **Ação:** Exibir o primeiro slide, se apresentar e abrir na tela o arquivo com o enunciado do problema: [UVA_11045_My_T_shirt_suits_me.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/UVA_11045_My_T_shirt_suits_me.md).
 * **Falas:**
   > "Boa noite, pessoal! Nosso grupo ficou responsável pelo problema **UVa 11045 — My T-shirt suits me**.
   > O contexto do problema é o seguinte: temos $N$ camisetas em estoque, divididas igualmente em 6 tamanhos (`XXL`, `XL`, `L`, `M`, `S` e `XS`). Temos também $M$ voluntários que precisam de uma camiseta cada. O desafio é que cada voluntário só aceita receber exatamente dois tamanhos específicos.
@@ -44,7 +44,7 @@
 ---
 ### 🎙️ Roteiro da Fala (Slide 2)
 * **Apresentador:** João Isaías
-* **Ação:** Apontar para o diagrama de fluxo na tela e detalhar as conexões.
+* **Ação:** Apontar para o diagrama de fluxo na tela e detalhar as conexões abrindo a seção de modelagem do [README.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/README.md#L23-L41).
 * **Falas:**
   > "Para modelar essa rede de fluxo, criamos uma estrutura com $8 + M$ vértices.
   > Primeiro, temos a **Fonte S** (vértice 0), conectada aos 6 nós de tamanhos de camiseta. A capacidade de cada aresta é de $N/6$, o que limita a quantidade máxima que podemos tirar de cada estoque.
@@ -64,7 +64,7 @@
 ---
 ### 🎙️ Roteiro da Fala (Slide 3)
 * **Apresentador:** Luiz Carlos
-* **Ação:** Apresentar a lógica do algoritmo e o papel fundamental das arestas reversas.
+* **Ação:** Apresentar a lógica do algoritmo e o papel fundamental das arestas reversas exibindo o arquivo [ford_fulkerson.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/ford_fulkerson.py#L32-L51) (especialmente a busca de caminhos residuais).
 * **Falas:**
   > "Boa noite! Eu vou explicar a estratégia algorítmica. Escolhemos usar o método de **Ford-Fulkerson** com Busca em Profundidade (**DFS**) para encontrar caminhos aumentantes de $S$ até $T$.
   > O ponto crucial do nosso código é a manutenção do **grafo residual**. A cada caminho aumentante encontrado, nós empurramos fluxo pelo gargalo do caminho e atualizamos as capacidades residuais. As arestas reversas desempenham um papel essencial aqui: elas nos permitem desfazer alocações ruins feitas em passos anteriores. Se um voluntário pegou uma camiseta que outro voluntário precisa obrigatoriamente, o fluxo é desviado através de uma aresta reversa para buscar outra opção viável.
@@ -85,7 +85,7 @@
 ---
 ### 🎙️ Roteiro da Fala (Slide 4 - Demonstração)
 * **Apresentador:** Luiz Carlos
-* **Ação:** Compartilhar a tela, mostrar a estrutura do código no VS Code e executar o script no terminal.
+* **Ação:** Compartilhar a tela exibindo os arquivos de código [flow_edge.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/flow_edge.py), [flow_network.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/flow_network.py), [main.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/main.py) e o consolidado [submit_uva.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/submit_uva.py). Mostrar também o arquivo de dados [entradas_do_problema.txt](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/dados/entradas_do_problema.txt) antes de executar o script no terminal.
 * **Falas:**
   > "Vou mostrar rapidamente nossa implementação no VS Code. Nós temos os arquivos `flow_edge.py`, `flow_network.py` e `ford_fulkerson.py`, que seguem a mesma lógica das classes do livro *Algorithms 4th Edition* (Sedgewick & Wayne).
   > Também consolidamos tudo em um único arquivo, o `submit_uva.py`, para facilitar o envio no portal Online Judge.
@@ -105,7 +105,7 @@
 ---
 ### 🎙️ Roteiro da Fala (Slide 5)
 * **Apresentador:** Ricardo André
-* **Ação:** Retomar a apresentação dos slides e explicar a finalização.
+* **Ação:** Retomar a apresentação dos slides e detalhar a lógica mostrando o trecho em [main.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/main.py#L46-L47) (ou no consolidado [submit_uva.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/submit_uva.py#L138-L139)) que converte o fluxo na resposta final.
 * **Falas:**
   > "Boa noite a todos. Eu vou explicar como interpretamos o resultado da nossa rede.
   > Cada unidade de fluxo que escoa com sucesso de S para T representa exatamente um voluntário que recebeu uma camiseta que lhe serve.
@@ -124,7 +124,7 @@
 ---
 ### 🎙️ Roteiro da Fala (Slide 6)
 * **Apresentador:** Ricardo André
-* **Ação:** Mostrar o slide com a análise de complexidade e o print do Accepted do UVa.
+* **Ação:** Mostrar o slide com a análise de complexidade, exibir o arquivo [roteiro.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/acompanhamento/roteiro.md) no repositório com o passo a passo manual, e apontar para o print do Accepted em [accepted.png](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/evidencias/accepted.png).
 * **Falas:**
   > "Para concluir, analisando a complexidade, a nossa rede possui no máximo 38 vértices e 96 arestas. Como o fluxo máximo é pequeno ($f^* \le 30$), o Ford-Fulkerson clássico com busca por DFS tem complexidade $O(E \cdot f^*)$, executando em menos de 3 mil operações — muito mais rápido e simples do que Edmonds-Karp neste caso.
   > Tratamos com sucesso casos de teste múltiplos e entradas com espaços adicionais usando uma leitura otimizada por tokens.
