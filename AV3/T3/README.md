@@ -1,219 +1,105 @@
-# UVA 11045 – My T-shirt suits me
-https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=22&page=show_problem&problem=1986
+# UVa 11045 — My T-shirt suits me
 
-## Descrição do Problema
+## Link do Problema
+https://onlinejudge.org/external/110/11045.pdf
 
-Victor é instrutor de um programa ambiental voluntário e precisa distribuir **N camisetas**
-para **M voluntários**, sendo que:
+## Integrantes do Grupo
+<!-- Substitua pelos nomes reais do grupo -->
+- Integrante 1
+- Integrante 2
+- Integrante 3
 
-- N é múltiplo de 6 e N ≥ M
-- Há exatamente **N/6 camisetas de cada tamanho**: XXL, XL, L, M, S e XS
-- Cada voluntário aceita **exatamente dois tamanhos**
-- Cada voluntário recebe **no máximo uma camiseta**
-
-O objetivo é determinar se é possível distribuir as camisetas de forma que
-**todos os voluntários recebam uma camiseta que lhes sirva**.
-
-**Restrições:**
-- `1 ≤ N ≤ 36` (múltiplo de 6)
-- `1 ≤ M ≤ 30`
-- `N ≥ M`
-
----
-
-## Estrutura do Repositório
-
-```
-T3/
-├── main.py                       # Ponto de entrada: lê stdin, imprime YES/NO
-├── README.md                     # Este arquivo
-├── T3.md                         # Enunciado do trabalho
-├── apresentacao/                 # Slides da apresentação
-├── cses/                         # (não aplicável a este problema)
-├── dados/                        # Arquivos de entrada para teste
-│   └── input.txt                 # Exemplo de entrada
-├── evidencias/                   # Print do Accepted no UVA Online Judge
-└── src/
-    ├── __init__.py
-    ├── flow_edge.py              # Aresta de fluxo com capacidade e fluxo atual
-    ├── flow_network.py           # Rede de fluxo com listas de adjacência
-    ├── breadth_first_paths.py    # BFS no grafo residual (caminho aumentante)
-    ├── ford_fulkerson.py         # Algoritmo Ford-Fulkerson com BFS
-    └── tshirt_network.py         # Constrói a rede específica do problema
-```
-
----
+## Linguagem Utilizada
+Python 3
 
 ## Como Executar
-
-### Pré-requisitos
-
-- Python 3.6 ou superior
-- Nenhuma biblioteca externa necessária
-
-### Passo a passo
-
-**1. Clone o repositório:**
 ```bash
-git clone https://github.com/<seu-usuario>/Grafos_Trabalhos_Unifor.git
-cd Grafos_Trabalhos_Unifor/AV3/T3
+python3 src/main.py < dados/entradas_do_problema.txt
 ```
-
-**2. Crie um arquivo de entrada** (ou use o que está em `dados/input.txt`):
-```
-3
-18 6
-L XL
-XL L
-XXL XL
-S XS
-M S
-M L
-6 4
-S XL
-L S
-L XL
-L XL
-6 1
-L M
-```
-
-**3. Execute:**
-
-No Windows (CMD):
-```cmd
-python src\main.py < dados\input.txt
-```
-
-No Linux/Mac:
-```bash
-python3 src/main.py < dados/input.txt
-```
-
-### Saída esperada
-
-```
-YES
-NO
-YES
-```
-
-### Explicação dos casos
-
-**Caso 1 (YES):** 18 camisetas → 3 de cada tamanho. Os 6 voluntários têm
-preferências variadas e é possível distribuir sem conflito.
-
-**Caso 2 (NO):** 6 camisetas → 1 de cada tamanho. 3 dos 4 voluntários querem
-tamanho L, mas só há 1 disponível. Fluxo máximo = 3 ≠ 4.
-
-**Caso 3 (YES):** 6 camisetas → 1 de cada tamanho. 1 voluntário quer L ou M.
-Qualquer um dos dois serve. Fluxo máximo = 1 = M.
+Todos os arquivos de `src/` devem estar na mesma pasta ao executar.
 
 ---
 
 ## Modelagem como Rede de Fluxo
 
-O problema é reduzido a um problema de **fluxo máximo em rede bipartida**.
+O problema é um **emparelhamento bipartido com múltiplas cópias** por tamanho,
+resolvido como fluxo máximo em rede capacitada.
 
-### Intuição
-
-Imagine que as camisetas são "água" fluindo por canos:
-- A **fonte** representa o estoque total
-- Os **tamanhos** são depósitos intermediários, cada um com capacidade N/6
-- Os **voluntários** só podem receber água de tamanhos compatíveis
-- O **sorvedouro** absorve o fluxo — cada voluntário entrega 1 unidade
-
-Se o fluxo máximo for igual a M → **YES**. Caso contrário → **NO**.
-
-### Estrutura da Rede
-
-```
-fonte (s)
-   ├──[cap = N/6]──► [XXL] ──[cap=1]──► voluntários que aceitam XXL ──[cap=1]──► sorvedouro (t)
-   ├──[cap = N/6]──► [XL]  ──[cap=1]──► voluntários que aceitam XL  ──[cap=1]──► sorvedouro (t)
-   ├──[cap = N/6]──► [L]   ──[cap=1]──► voluntários que aceitam L   ──[cap=1]──► sorvedouro (t)
-   ├──[cap = N/6]──► [M]   ──[cap=1]──► voluntários que aceitam M   ──[cap=1]──► sorvedouro (t)
-   ├──[cap = N/6]──► [S]   ──[cap=1]──► voluntários que aceitam S   ──[cap=1]──► sorvedouro (t)
-   └──[cap = N/6]──► [XS]  ──[cap=1]──► voluntários que aceitam XS  ──[cap=1]──► sorvedouro (t)
-```
-
-### Numeração dos Nós
-
-| Nó | Representa |
-|----|-----------|
-| `0` | Fonte (source) |
-| `1` | Tamanho XXL |
-| `2` | Tamanho XL |
-| `3` | Tamanho L |
-| `4` | Tamanho M |
-| `5` | Tamanho S |
-| `6` | Tamanho XS |
-| `7` até `7+M-1` | Voluntários (0 a M-1) |
-| `7+M` | Sorvedouro (sink) |
+### Vértices
+| Vértice | Descrição |
+|---|---|
+| 0 — Fonte (S) | Representa o estoque total de camisetas |
+| 1 a 6 | Um nó por tamanho: XXL=1, XL=2, L=3, M=4, S=5, XS=6 |
+| 7 até 7+M-1 | Um nó por voluntário |
+| 7+M — Sorvedouro (T) | Representa a conclusão de todas as alocações |
 
 ### Arestas e Capacidades
-
-| Aresta | Capacidade | Justificativa |
-|--------|-----------|---------------|
-| Fonte → Tamanho[i] | `N/6` | Cada tamanho tem exatamente N/6 unidades disponíveis |
-| Tamanho[i] → Voluntário[j] | `1` | O voluntário pode receber no máximo 1 camiseta daquele tamanho |
-| Voluntário[j] → Sorvedouro | `1` | Cada voluntário recebe no máximo 1 camiseta no total |
-
----
-
-## Algoritmo: Ford-Fulkerson com BFS (Edmonds-Karp)
-
-### Como funciona
-
-O algoritmo executa os seguintes passos repetidamente:
-
-1. **BFS** no grafo residual para encontrar um caminho aumentante de `s` até `t`
-2. **Gargalo**: calcula a menor capacidade residual ao longo do caminho
-3. **Atualização**: envia fluxo igual ao gargalo, atualizando as capacidades residuais
-4. **Para** quando não existir mais caminho de `s` a `t` no grafo residual
-
-### Grafo Residual
-
-Cada aresta `u → v` com capacidade `c` e fluxo `f` gera:
-- Aresta direta `u → v` com capacidade residual `c - f`
-- Aresta reversa `v → u` com capacidade residual `f`
-
-A aresta reversa permite que o algoritmo "desfaça" decisões anteriores,
-garantindo que a solução ótima seja encontrada.
-
-### Por que BFS e não DFS?
-
-| Critério | Ford-Fulkerson (DFS) | Edmonds-Karp (BFS) |
-|----------|---------------------|-------------------|
-| Busca de caminho | Qualquer caminho | Menor número de arestas |
-| Número de iterações | O(valor do fluxo) | O(V · E) |
-| Risco de lentidão | Sim, com capacidades grandes | Não |
-| Terminação | Garantida só com inteiros | Sempre garantida |
-
-Optamos por **Edmonds-Karp (BFS)** porque garante terminação previsível e
-a classe `BreadthFirstPaths` já faz parte da base `algs4-py` do curso.
-
-### Complexidade
-
-- **Tempo:** `O(V · E²)` — Edmonds-Karp
-- **Memória:** `O(V + E)` — listas de adjacência com arestas residuais
-- Para este problema: `V ≤ 38`, `E ≤ 96` → execução instantânea
+| Aresta | Capacidade | Significado |
+|---|---|---|
+| Fonte → tamanho_i | N/6 | Estoque disponível de cada tamanho |
+| tamanho_i → voluntário_j | 1 | Voluntário j aceita o tamanho i |
+| voluntário_j → Sorvedouro | 1 | Cada voluntário recebe no máximo 1 camiseta |
 
 ---
 
-## Referência à Base algs4-py
+## Algoritmo Utilizado
+**Ford-Fulkerson com DFS** (busca em profundidade para caminhos aumentantes).
 
-| Classe | Inspirada em | Convenções mantidas |
-|--------|-------------|---------------------|
-| `FlowEdge` | `Edge` + `DirectedEdge` | atributos `v`, `w`; métodos `From()`, `To()`, `other()` |
-| `FlowNetwork` | `Graph` | atributos `V`, `E`, `adj`; métodos `add_edge()`, `__str__()` |
-| `BreadthFirstPaths` | `BreadthFirstPaths` | atributos `_marked`, `edge_to`; métodos `_bfs()`, `has_path_to()`, `path_to()` |
-| `FordFulkerson` | — | orquestra `BreadthFirstPaths` e `FlowNetwork` |
+As classes `FlowEdge`, `FlowNetwork` e `FordFulkerson` foram implementadas
+do zero seguindo a estrutura do algs4 (Sedgewick & Wayne, 4ª edição).
 
 ---
 
-## Dependências
+## Papel do Grafo Residual
 
-Nenhuma biblioteca externa. Apenas módulos da biblioteca padrão do Python 3:
-- `sys` — leitura eficiente da entrada via `stdin`
-- `collections.deque` — fila para BFS
+O grafo residual mantém, para cada aresta, a capacidade ainda disponível.
+Arestas reversas permitem "desfazer" alocações anteriores: se um tamanho foi
+atribuído a um voluntário mas outro voluntário precisaria dele com exclusividade,
+o algoritmo pode redirecionar o fluxo pela aresta reversa.
+
+---
+
+## Como o Fluxo é Convertido na Resposta
+
+Cada unidade de fluxo que chega ao sorvedouro representa um voluntário que
+recebeu uma camiseta que lhe serve. Se o fluxo máximo for igual a M, todos
+foram atendidos (YES). Caso contrário (NO).
+
+---
+
+## Emparelhamento Bipartido
+
+Não há corte mínimo nem reconstrução de caminhos neste problema.
+O resultado é obtido diretamente pelo valor do fluxo máximo comparado a M.
+O emparelhamento bipartido está implícito: tamanhos de um lado, voluntários
+do outro, com capacidade N/6 na fonte controlando o estoque por tamanho.
+
+---
+
+## Análise de Complexidade
+
+- Vértices: 2 + 6 + M ≤ 38
+- Arestas: 6 + 2·M + M = 6 + 3·M ≤ 96
+- Ford-Fulkerson DFS: **O(E · f\*)** onde f* ≤ M ≤ 30
+- Por caso de teste: O(96 × 30) = **O(2.880)** — constante na prática
+
+Escolhemos Ford-Fulkerson com DFS em vez de Edmonds-Karp porque o fluxo
+máximo f* é pequeno (≤ 30). O(E · f*) é mais simples e eficiente aqui do
+que O(V · E²) do Edmonds-Karp.
+
+---
+
+## Casos Especiais Relevantes
+
+- **N > M com concentração de tamanhos:** sobram camisetas, mas se mais de
+  N/6 voluntários precisam do mesmo tamanho, é NO.
+- **Todos aceitam os mesmos 2 tamanhos:** se M > 2·(N/6), é NO.
+- **N = M:** sem folga — cada camiseta deve ser alocada com precisão.
+- **Voluntário com 2 tamanhos iguais:** não ocorre segundo o enunciado, mas
+  a modelagem suportaria sem problemas.
+
+---
+
+## Evidência de Accepted
+<!-- Adicione aqui o print ou link após submeter no UVa Online Judge -->
+`evidencias/accepted.png`
