@@ -4,10 +4,9 @@
 https://onlinejudge.org/external/110/11045.pdf
 
 ## Integrantes do Grupo
-<!-- Substitua pelos nomes reais do grupo -->
-- Integrante 1
-- Integrante 2
-- Integrante 3
+- João Isaías — 2310283
+- Luiz Carlos — 2410410
+- Ricardo André — 2417200
 
 ## Linguagem Utilizada
 Python 3
