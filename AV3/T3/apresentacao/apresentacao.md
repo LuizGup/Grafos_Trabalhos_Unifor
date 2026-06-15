@@ -1,37 +1,80 @@
-# Roteiro de Apresentação - T3 (5 minutos)
+# Roteiro de Apresentação ao Vivo (Sem Slides) — Grupo J
+**Problema:** UVa 11045 — My T-shirt suits me  
+**Integrantes:** João Isaías, Luiz Carlos e Ricardo André  
 
-## Pessoa 1 (0:00-1:30) - Contexto, modelagem de rede e mapeamento
-* **Apresentador:** João Isaías
-* **O que mostrar na tela:** O navegador na página do problema [UVa 11045](https://onlinejudge.org/external/110/11045.pdf) (ou [UVA_11045_My_T_shirt_suits_me.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/UVA_11045_My_T_shirt_suits_me.md)) e a tabela de modelagem em [README.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/README.md#L23-L41).
-* **Ação:** Apontar para o enunciado das camisetas e voluntários no navegador, e depois alternar para o VS Code exibindo a tabela de vértices e arestas no README.md.
-* **Falas:**
-  "Neste Trabalho Prático 3, o objetivo é resolver o problema UVa 11045, onde precisamos determinar se é possível distribuir N camisetas de 6 tamanhos diferentes (XXL, XL, L, M, S e XS) para M voluntários de modo que cada um receba exatamente um tamanho que aceite. O estoque de camisetas é igualmente dividido, tendo exatamente N/6 camisetas por tamanho. Modelamos isso como um emparelhamento bipartido com múltiplas cópias e reduzimos para fluxo máximo em redes."
-  
-  "Na modelagem da rede, criamos 8 + M vértices: a origem S é o vértice 0, os tamanhos são indexados de 1 a 6, os voluntários vão de 7 até 7+M-1, e o sorvedouro T é o vértice 7+M. Conectamos S a cada tamanho com capacidade N/6 (limite do estoque). Cada tamanho é conectado aos voluntários que o aceitam com capacidade 1. E cada voluntário é conectado a T com capacidade 1, garantindo que ninguém receba mais de uma camiseta. Se conseguirmos escoar fluxo suficiente de S até T, significa que existe uma atribuição válida para todos."
+---
 
-## Pessoa 2 (1:30-3:20) - Algoritmo, grafo residual e implementação
-* **Apresentador:** Luiz Carlos
-* **O que mostrar na tela:** O arquivo [ford_fulkerson.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/ford_fulkerson.py#L10-L54) (destacando a busca de caminhos aumentantes via DFS e o grafo residual) e [flow_edge.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/flow_edge.py#L34-L48).
-* **Ação:** Mostrar no VS Code os métodos `residual_capacity_to` e `add_residual_flow_to` em `flow_edge.py` e a busca por caminhos aumentantes usando DFS em `ford_fulkerson.py`.
-* **Falas:**
-  "Para encontrar o fluxo máximo na nossa rede, implementamos o algoritmo de Ford-Fulkerson usando busca em profundidade (DFS) para encontrar caminhos aumentantes. O ponto central da nossa implementação é o controle do grafo residual por meio das capacidades das arestas e suas respectivas arestas reversas. Na classe FlowEdge, os métodos `residual_capacity_to` e `add_residual_flow_to` atualizam a capacidade e o fluxo tanto no sentido direto quanto no reverso."
-  
-  "Esse conceito de arestas reversas no grafo residual é fundamental: ele permite que o algoritmo 'desfaça' decisões de alocação anteriores que poderiam bloquear outros voluntários. A DFS percorre a rede residual em busca de caminhos aumentantes a partir de S. Quando não existem mais caminhos residuais conectando a origem ao sorvedouro, o loop principal do Ford-Fulkerson termina, garantindo que alcançamos o valor do fluxo máximo."
+## Estrutura da Apresentação
+Como a apresentação será feita diretamente no computador, sem uso de slides, a dinâmica será baseada no compartilhamento da tela do **Navegador** (página do problema) e do **VS Code** (arquivos de código, README, roteiro manual e execução no terminal).
 
-## Pessoa 3 (3:20-4:40) - Demonstração prática, execução e validação
-* **Apresentador:** Luiz Carlos (demonstração) e Ricardo André
-* **O que mostrar na tela:** O arquivo de dados [entradas_do_problema.txt](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/dados/entradas_do_problema.txt), os arquivos de ponto de entrada [main.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/main.py) (ou [submit_uva.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/submit_uva.py)) e o terminal do VS Code rodando o código.
-* **Ação:** Exibir os arquivos de código e o arquivo de entrada. Abrir o terminal e executar o comando de teste local, mostrando a saída `YES`, `NO`, `YES`.
-* **Falas:**
-  "[Luiz Carlos]: Vou realizar a demonstração da execução prática. Implementamos o script principal em `main.py` e consolidamos no arquivo `submit_uva.py` para submissão no portal. Para tornar a leitura de dados resiliente contra espaços extras ou quebras de linha que costumam causar erros na plataforma do UVa, lemos a entrada inteira via tokens usando `sys.stdin.read().split()`. Agora vou rodar a solução no terminal com a nossa instância exemplo."
-  
-  "*[Luiz executa o comando:* `Get-Content dados/entradas_do_problema.txt | python src/main.py` *]*"
-  
-  "[Ricardo André]: Como podemos ver no terminal, o programa retorna YES, NO e YES, exatamente os resultados esperados do exemplo. A conversão do fluxo na resposta final é simples: como cada unidade de fluxo escoado de S a T equivale a um voluntário atendido com sucesso, se o valor final do fluxo máximo for igual a M (o número de voluntários), sabemos que todos foram atendidos e exibimos YES, caso contrário exibimos NO."
+---
 
-## Fechamento (4:40-5:00) - Complexidade, casos especiais e Accepted
-* **Apresentador:** Ricardo André
-* **O que mostrar na tela:** A seção de complexidade em [README.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/README.md#L79-L88), o roteiro manual [roteiro.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/acompanhamento/roteiro.md) e a imagem de aprovação [accepted.png](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/evidencias/accepted.png) no VS Code.
-* **Ação:** Mostrar a seção do README correspondente à complexidade, abrir rapidamente o arquivo roteiro.md mostrando a execução manual passo a passo e exibir o print do Accepted na tela.
-* **Falas:**
-  "Concluindo, o algoritmo de Ford-Fulkerson com DFS possui complexidade de tempo O(E * f*). Como o fluxo máximo f* é no máximo 30 e a rede tem no máximo 96 arestas, executamos cerca de 2.880 operações por teste, o que é instantâneo e mais leve do que Edmonds-Karp. Também montamos o arquivo `roteiro.md` com o passo a passo manual de uma instância de teste para validação teórica. Por fim, mostramos na tela a comprovação da nossa solução que recebeu status de Accepted no portal oficial do UVa Online Judge. Assim finalizamos a nossa apresentação. Obrigado!"
+### 🟢 Parte 1: Introdução e Contexto do Problema (João Isaías)
+* **Tempo estimado:** ~1 minuto
+* **O que mostrar na tela:** O navegador aberto na página oficial do problema: [UVa 11045 - PDF](https://onlinejudge.org/external/110/11045.pdf) ou o arquivo markdown [UVA_11045_My_T_shirt_suits_me.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/UVA_11045_My_T_shirt_suits_me.md).
+* **Ação do Apresentador:** Explicar a regra do problema apontando para o enunciado.
+* **Roteiro da Fala (João Isaías):**
+  > "Boa noite, professor e colegas. Nós somos o Grupo J e vamos apresentar a nossa resolução para o problema **UVa 11045 — My T-shirt suits me**.
+  > O contexto do problema é o seguinte: o instrutor de um programa de voluntários precisa distribuir N camisetas de 6 tamanhos diferentes (XXL, XL, L, M, S e XS) para M voluntários. O estoque é igualmente dividido entre os 6 tamanhos, ou seja, temos exatamente N/6 camisetas de cada tamanho.
+  > Cada voluntário aceita apenas dois tamanhos específicos de camisetas. Nosso objetivo é decidir se é possível fazer uma distribuição válida que atenda a todos os voluntários, imprimindo YES ou NO."
+
+---
+
+### 🟢 Parte 2: Modelagem da Rede de Fluxo (João Isaías)
+* **Tempo estimado:** ~1 minuto
+* **O que mostrar na tela:** O arquivo [README.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/README.md#L22-L41) na seção de **Modelagem como Rede de Fluxo** (exibindo a tabela de vértices, arestas e capacidades).
+* **Ação do Apresentador:** Percorrer a tabela de vértices e arestas explicando o modelo teórico de rede de fluxo.
+* **Roteiro da Fala (João Isaías):**
+  > "Para resolver esse emparelhamento bipartido com múltiplos recursos, modelamos o problema como uma rede de fluxo direcionada.
+  > Como vocês podem ver aqui na tabela do nosso README:
+  > - Criamos a **Origem (S)** no vértice 0.
+  > - Conectamos S a cada um dos 6 tamanhos de camiseta, com capacidade N/6 (que representa o limite do estoque por tamanho).
+  > - Conectamos cada tamanho de camiseta aos voluntários correspondentes que aceitam aquele tamanho, com capacidade 1 (pois um voluntário só consome uma camiseta daquela opção).
+  > - E conectamos cada nó de voluntário ao **Sorvedouro (T)** com capacidade 1, garantindo que nenhum voluntário receba mais de uma camiseta.
+  > Dessa forma, se conseguirmos escoar fluxo suficiente de S até T, temos uma atribuição válida."
+
+---
+
+### 🟢 Parte 3: Algoritmo e Grafo Residual (Luiz Carlos)
+* **Tempo estimado:** ~1 minuto
+* **O que mostrar na tela:** O VS Code exibindo os arquivos de implementação [ford_fulkerson.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/ford_fulkerson.py#L10-L54) e o conceito de aresta residual em [flow_edge.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/flow_edge.py#L34-L48).
+* **Ação do Apresentador:** Mostrar o código e explicar a lógica teórica do algoritmo e do grafo residual.
+* **Roteiro da Fala (Luiz Carlos):**
+  > "Boa noite. Vou explicar como implementamos o algoritmo. Escolhemos usar o método clássico de **Ford-Fulkerson** com Busca em Profundidade (DFS) para encontrar caminhos aumentantes.
+  > O grande diferencial do fluxo máximo está na utilização do **Grafo Residual**. Aqui no código da classe `FlowEdge`, vocês podem ver os métodos `residual_capacity_to` e `add_residual_flow_to`. Eles controlam o fluxo na aresta direta e o fluxo residual na aresta reversa.
+  > Essas arestas reversas funcionam como um mecanismo de 'desfazer'. Se o algoritmo faz uma atribuição ruim no início (por exemplo, alocando um tamanho para um voluntário que aceitaria outra opção), ele consegue redirecionar esse fluxo no grafo residual por meio das arestas reversas, encontrando novos caminhos aumentantes até que nenhum caminho de S a T seja mais alcançável pela DFS."
+
+---
+
+### 🟢 Parte 4: Leitura dos Dados e Execução Local (Luiz Carlos)
+* **Tempo estimado:** ~1 minuto
+* **O que mostrar na tela:** O arquivo [main.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/main.py) (ou o arquivo consolidado de submissão [submit_uva.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/submit_uva.py)) e o terminal do VS Code.
+* **Ação do Apresentador:** Explicar a leitura robusta de entrada e rodar o script localmente no terminal.
+* **Roteiro da Fala (Luiz Carlos):**
+  > "Aqui no arquivo de ponto de entrada (`main.py`), fazemos a leitura rápida dos casos de teste. Na nossa versão final para submissão (`submit_uva.py`), utilizamos uma leitura por tokens baseada em `sys.stdin.read().split()`. Fizemos isso para garantir o correto tratamento de espaços em branco ou quebras de linha que o juiz do UVa costuma incluir.
+  > Vou rodar os testes da pasta de dados localmente no terminal:
+  > *[Luiz executa o comando no terminal do VS Code:* `Get-Content dados/entradas_do_problema.txt | python src/main.py` *]*
+  > Como podem ver, a saída local do nosso programa para o caso exemplo é `YES`, `NO` e `YES`, batendo exatamente com as respostas oficiais."
+
+---
+
+### 🟢 Parte 5: Interpretação da Resposta e Complexidade (Ricardo André)
+* **Tempo estimado:** ~30 segundos
+* **O que mostrar na tela:** O trecho final do código no VS Code ([main.py](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/src/main.py#L46-L47)) onde o valor do fluxo máximo é comparado com M, e a seção de complexidade no [README.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/README.md#L79-L88).
+* **Ação do Apresentador:** Explicar a conversão do fluxo na resposta e falar sobre a complexidade computacional.
+* **Roteiro da Fala (Ricardo André):**
+  > "Boa noite a todos. Eu vou explicar como interpretamos o resultado. 
+  > A quantidade máxima de fluxo que chega ao sorvedouro representa exatamente quantos voluntários conseguiram receber uma camiseta que lhes serve.
+  > Como a nossa condição é que *todos* os voluntários sejam atendidos, o fluxo máximo calculado deve ser exatamente igual a M (o número de voluntários). Se `ff.value() == M`, imprimimos YES, caso contrário, NO.
+  > Em termos de complexidade de tempo, o Ford-Fulkerson com DFS roda em O(E * f*). Como o fluxo máximo é no máximo M (onde M <= 30) e temos pouquíssimas arestas (E <= 96), no pior caso executamos apenas cerca de 2.880 operações por caso de teste. Por isso, a escolha do Ford-Fulkerson clássico com DFS é perfeita e muito mais leve de implementar do que o algoritmo de Edmonds-Karp (BFS) para esta dimensão de rede."
+
+---
+
+### 🟢 Parte 6: Roteiro Manual e Accepted (Ricardo André)
+* **Tempo estimado:** ~30 segundos
+* **O que mostrar na tela:** O arquivo markdown do roteiro da atividade de acompanhamento [roteiro.md](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/acompanhamento/roteiro.md) e o print do Accepted em [accepted.png](file:///c:/Users/lcarl/Documents/MyProjects/Grafos_Trabalhos_Unifor/AV3/T3/evidencias/accepted.png) no VS Code.
+* **Ação do Apresentador:** Mostrar o passo a passo manual rápido e a imagem com o status Accepted da plataforma.
+* **Roteiro da Fala (Ricardo André):**
+  > "Para a atividade de acompanhamento, detalhamos neste documento (`roteiro.md`) uma simulação manual de execução passo a passo do algoritmo de caminhos aumentantes no segundo caso de teste (o que resulta em NO), mostrando cada gargalo e as atualizações do residual.
+  > E para finalizar, mostro a imagem de comprovação contida na pasta de evidências do repositório, atestando que a nossa submissão foi aceita com o status de **Accepted** no portal do UVa Online Judge.
+  > Com isso, concluímos a nossa apresentação. Obrigado a todos!"
