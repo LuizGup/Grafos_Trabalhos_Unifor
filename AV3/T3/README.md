@@ -3,6 +3,9 @@
 ## Link do Problema
 https://onlinejudge.org/external/110/11045.pdf
 
+## Link do Vídeo
+https://youtu.be/XZg3VD1M84g
+
 ## Integrantes do Grupo
 - João Isaías — 2310283
 - Luiz Carlos — 2410410
